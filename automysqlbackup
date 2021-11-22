@@ -481,6 +481,12 @@ parse_configuration () {
 	  opt_dbstatus=( "${opt_dbstatus[@]}" "--port=${CONFIG_mysql_dump_port}" )
     }
 
+		if ((${#CONFIG_dump_options[@]})); then
+      for i in "${CONFIG_dump_options[@]}"; do
+				opt=( "${opt[@]}" "$i" )
+      done
+    fi
+
     # Check if CREATE DATABASE should be included in Dump
     if [[ "${CONFIG_mysql_dump_use_separate_dirs}" = "yes" ]]; then
 	    if [[ "${CONFIG_mysql_dump_create_database}" = "no" ]]; then
